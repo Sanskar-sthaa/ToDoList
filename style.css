@@ -33,10 +33,12 @@ h1 {
     display: flex;
     gap: 10px;
     margin-bottom: 20px;
+    flex-wrap: wrap;
 }
 
 #taskInput {
     flex: 1;
+    min-width: 200px;
     padding: 12px;
     border: 2px solid #e0e0e0;
     border-radius: 5px;
@@ -44,7 +46,18 @@ h1 {
     transition: border-color 0.3s;
 }
 
-#taskInput:focus {
+#categorySelect,
+#dueDateInput {
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 5px;
+    font-size: 1em;
+    transition: border-color 0.3s;
+}
+
+#taskInput:focus,
+#categorySelect:focus,
+#dueDateInput:focus {
     outline: none;
     border-color: #667eea;
 }
@@ -69,6 +82,84 @@ h1 {
     transform: scale(0.98);
 }
 
+.filter-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 8px 16px;
+    background: #e0e0e0;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.filter-btn:hover {
+    background: #d0d0d0;
+}
+
+.filter-btn.active {
+    background: #667eea;
+    color: white;
+    border-color: #667eea;
+}
+
+.category-filters {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.category-filter-btn {
+    padding: 6px 12px;
+    background: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: all 0.3s;
+}
+
+.category-filter-btn:hover {
+    border-color: #667eea;
+}
+
+.category-filter-btn.active {
+    background: #667eea;
+    color: white;
+    border-color: #667eea;
+}
+
+.sort-container {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.sort-container label {
+    font-weight: 500;
+    color: #333;
+}
+
+#sortSelect {
+    padding: 8px 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: border-color 0.3s;
+}
+
+#sortSelect:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
 .task-list {
     list-style: none;
 }
@@ -81,6 +172,7 @@ h1 {
     margin-bottom: 10px;
     border-radius: 5px;
     transition: all 0.3s;
+    border-left: 4px solid #ddd;
 }
 
 .task-item:hover {
@@ -102,12 +194,65 @@ h1 {
     margin-right: 15px;
     cursor: pointer;
     accent-color: #667eea;
+    flex-shrink: 0;
+}
+
+.task-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.task-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
 }
 
 .task-text {
-    flex: 1;
     color: #333;
     font-size: 1em;
+    flex: 1;
+}
+
+.task-category {
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.75em;
+    font-weight: 600;
+    white-space: nowrap;
+    color: white;
+}
+
+.task-category.General { background: #95a5a6; }
+.task-category.Work { background: #3498db; }
+.task-category.Personal { background: #e74c3c; }
+.task-category.Shopping { background: #f39c12; }
+.task-category.Health { background: #27ae60; }
+
+.task-meta {
+    display: flex;
+    gap: 15px;
+    font-size: 0.85em;
+    color: #666;
+}
+
+.task-due-date {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.task-due-date.overdue {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+.task-actions {
+    display: flex;
+    gap: 8px;
+    margin-left: 15px;
 }
 
 .delete-btn {
@@ -119,6 +264,7 @@ h1 {
     cursor: pointer;
     font-weight: bold;
     transition: background 0.3s;
+    flex-shrink: 0;
 }
 
 .delete-btn:hover {
